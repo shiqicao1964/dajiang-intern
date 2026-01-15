@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 # 1. 您的API地址
 api_url = "https://ai-agent-env-cvobsfpbbg.cn-hangzhou.fcapp.run/detect"
 
