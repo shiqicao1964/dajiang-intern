@@ -20,12 +20,12 @@ df = pd.read_csv(csv_file)
 coco = COCO(annotation_file)
 
 # 2. 选择图片
-person_samples = df[df['label'] == 0].head(3)
-car_samples = df[df['label'] == 1].head(3)
+person_samples = df[df['label'] == 0].head(2)
+car_samples = df[df['label'] == 1].head(2)
 
 
-# 创建图形（3x2）
-fig, axes = plt.subplots(2, 3, figsize=(15, 8))
+# 创建图形（2x2）
+fig, axes = plt.subplots(2, 2, figsize=(10, 8))
 
 # 4. 下载和显示函数
 def download_image(url):

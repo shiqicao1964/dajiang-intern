@@ -81,11 +81,11 @@ class AsyncCOCODownloader:
         
         try:
             df = pd.read_csv(csv_file)
-            print(f"📁 文件: {csv_file}")
-            print(f"📊 图片数量: {len(df):,}张")
-            print(f"📂 输出目录: {output_dir}")
+            print(f" 文件: {csv_file}")
+            print(f" 图片数量: {len(df):,}张")
+            print(f" 输出目录: {output_dir}")
         except Exception as e:
-            print(f"❌ 加载CSV失败: {e}")
+            print(f" 加载CSV失败: {e}")
             return None
         
         os.makedirs(output_dir, exist_ok=True)
@@ -103,7 +103,7 @@ class AsyncCOCODownloader:
         # 检查循环是否在运行
         if loop.is_running():
             # 如果循环已经在运行，使用不同的方法
-            print("⚠️  事件循环已在运行，使用nest_asyncio解决...")
+            print("  事件循环已在运行，使用nest_asyncio解决...")
             try:
                 import nest_asyncio
                 nest_asyncio.apply()
@@ -137,12 +137,12 @@ class AsyncCOCODownloader:
         total_time = end_time - start_time
         speed = success / total_time if total_time > 0 else 0
         
-        print(f"\n📈 {dataset_name}下载完成!")
-        print(f"   ✅ 成功: {success:,}张")
-        print(f"   ⏭️  跳过: {skipped:,}张")
-        print(f"   ❌ 失败: {failed:,}张")
-        print(f"   ⏱️  耗时: {total_time:.1f}秒 ({total_time/60:.1f}分钟)")
-        print(f"   🚀 速度: {speed:.1f}张/秒 ({speed*3600:.0f}张/小时)")
+        print(f"\n {dataset_name}下载完成!")
+        print(f"    成功: {success:,}张")
+        print(f"     跳过: {skipped:,}张")
+        print(f"    失败: {failed:,}张")
+        print(f"     耗时: {total_time:.1f}秒 ({total_time/60:.1f}分钟)")
+        print(f"    速度: {speed:.1f}张/秒 ({speed*3600:.0f}张/小时)")
         
         if failed > 0:
             print(f"\n⚠️  失败详情（前10个）:")
@@ -188,7 +188,7 @@ def main():
     # 检查CSV文件
     for dataset in datasets:
         if not os.path.exists(dataset['csv_file']):
-            print(f"❌ 找不到CSV文件: {dataset['csv_file']}")
+            print(f" 找不到CSV文件: {dataset['csv_file']}")
             print("请先运行数据集构建脚本生成CSV文件")
             sys.exit(1)
     
@@ -220,7 +220,7 @@ def main():
                 lambda x: os.path.join(dataset['output_dir'], x)
             )
             df.to_csv(dataset['new_csv'], index=False)
-            print(f"\n📄 已更新CSV路径: {dataset['new_csv']}")
+            print(f"\n 已更新CSV路径: {dataset['new_csv']}")
             
             # 累计统计
             total_stats['total_success'] += stats['success']
@@ -231,20 +231,15 @@ def main():
             total_stats['total_images'] += df_size
     
     # 总体统计
-    print(f"\n{'='*60}")
-    print("🎉 全部下载完成!")
-    print(f"{'='*60}")
-    print(f"📊 总体统计:")
     print(f"   总图片数: {total_stats['total_images']:,}张")
     print(f"   成功下载: {total_stats['total_success']:,}张")
     print(f"   下载失败: {total_stats['total_failed']:,}张")
     print(f"   总耗时: {total_stats['total_time']/60:.1f}分钟")
     
-    print(f"\n📁 目录结构:")
     print(f"   coco/images/person_car_train2017/")
     print(f"   coco/images/person_car_val2017/")
     
-    print(f"\n📄 生成的CSV文件:")
+    print(f"\n 生成的CSV文件:")
     print(f"   coco_person_car_train_local.csv")
     print(f"   coco_person_car_val_local.csv")
     
@@ -257,8 +252,6 @@ if __name__ == "__main__":
         import pandas
         from tqdm import tqdm
     except ImportError as e:
-        print(f"❌ 缺少依赖库: {e}")
-        print("请安装: pip install aiohttp pandas tqdm")
         sys.exit(1)
     
     # 运行主函数

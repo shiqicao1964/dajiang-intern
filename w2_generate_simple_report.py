@@ -7,7 +7,6 @@ Created on Tue Jan 27 00:13:45 2026
 
 """
 generate_simple_report.py
-生成简洁的数据分析报告 - 修复版
 """
 
 import pandas as pd
@@ -96,8 +95,8 @@ def generate_simple_report():
     plt.savefig('visualizations/comparison.png', dpi=150, bbox_inches='tight')
     plt.close()
     
-    # 4. 生成Markdown报告
-    print("📝 生成报告文件...")
+    #  生成Markdown报告
+    print(" 生成报告文件...")
     
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
@@ -105,7 +104,7 @@ def generate_simple_report():
 
 **Generated on:** {current_time}
 
-## 📊 Dataset Statistics
+##  Dataset Statistics
 
 ### Image Counts
 | Dataset | Total Images | Person Images | Car Images |
@@ -138,48 +137,15 @@ def generate_simple_report():
     with open('data_analysis.md', 'w', encoding='utf-8') as f:
         f.write(report)
     
-    print(f"✅ 报告已生成: data_analysis.md")
-    print(f"✅ 可视化图表已保存到: visualizations/")
 
-def check_files():
-    """检查文件是否存在"""
-    required_files = [
-        'coco_person_car_train_local.csv',
-        'coco_person_car_val_local.csv'
-    ]
-    
-    missing = []
-    for file in required_files:
-        if not os.path.exists(file):
-            missing.append(file)
-    
-    return missing
 
 def main():
     print("=" * 50)
     print("COCO Person-Car Dataset Analysis Report Generator")
     print("=" * 50)
     
-    # 检查文件
-    missing_files = check_files()
-    if missing_files:
-        print("❌ 缺少必要文件:")
-        for file in missing_files:
-            print(f"   - {file}")
-        print("\n请先运行下载脚本:")
-        print("   python download_coco_simple.py")
-        return
-    
-    # 生成报告
     generate_simple_report()
     
-    print("\n" + "=" * 50)
-    print(" 数据分析报告生成完成!")
-    print("=" * 50)
-    print("\n生成的文件:")
-    print("    data_analysis.md")
-    print("     visualizations/data_distribution.png")
-    print("     visualizations/comparison.png")
 
 if __name__ == "__main__":
     # 安装必要依赖
