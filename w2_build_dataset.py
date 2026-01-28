@@ -53,7 +53,7 @@ def create_single_label_dataset(annotation_file, output_csv, split='train'):
         if has_person and not has_car:
             # 只有人
             dataset_records.append({
-                'file_path': f"./coco/images/person_car_{split}2017/{img_info['file_name']}",  # 相对路径
+                'file_path': f"./coco/images/person_car_{split}2017/{img_info['file_name']}",  # 相对路径 后续下载时更新
                 'label': 0,  # 人
                 'image_id': img_id,
                 'split': split,
@@ -65,7 +65,7 @@ def create_single_label_dataset(annotation_file, output_csv, split='train'):
         elif has_car and not has_person:
             # 只有车
             dataset_records.append({
-                'file_path': f"./coco/images/person_car_{split}2017/{img_info['file_name']}",
+                'file_path': f"./coco/images/person_car_{split}2017/{img_info['file_name']}", # 相对路径 后续下载时更新
                 'label': 1,  # 车
                 'image_id': img_id,
                 'split': split,
